@@ -1,0 +1,94 @@
+time =  0 | cycle =  0 | Reset = 1 | CMD = 00 | DataIn =   | Full = x | Empty = x | Top =   | Q =                                 
+
+--- Testing: HOLD (Expected: No change, Empty = 1) ---
+
+--- Testing: INSERT_END (Expected: Insert A, B, C from the left) ---
+time =  2 | cycle =  1 | Reset = 0 | CMD = 00 | DataIn =   | Full = 0 | Empty = 1 | Top =   | Q =                                 
+time =  4 | cycle =  2 | Reset = 0 | CMD = 00 | DataIn =   | Full = 0 | Empty = 1 | Top =   | Q =                                 
+time =  6 | cycle =  3 | Reset = 0 | CMD = 01 | DataIn = B | Full = 0 | Empty = 0 | Top = A | Q = A                               
+time =  8 | cycle =  4 | Reset = 0 | CMD = 01 | DataIn = B | Full = 0 | Empty = 0 | Top = A | Q = AB                              
+
+--- Testing: INSERT_FRONT (Expected: Insert X at left, A/B/C shift right) ---
+time = 10 | cycle =  5 | Reset = 0 | CMD = 10 | DataIn = X | Full = 0 | Empty = 0 | Top = A | Q = ABC                             
+time = 12 | cycle =  6 | Reset = 0 | CMD = 10 | DataIn = X | Full = 0 | Empty = 0 | Top = X | Q = XABC                            
+
+--- Testing: HOLD (Expected: DataIn Z is ignored, stack unchanged) ---
+time = 14 | cycle =  7 | Reset = 0 | CMD = 00 | DataIn = Z | Full = 0 | Empty = 0 | Top = Y | Q = YXABC                           
+time = 16 | cycle =  8 | Reset = 0 | CMD = 00 | DataIn = Z | Full = 0 | Empty = 0 | Top = Y | Q = YXABC                           
+
+--- Testing: POP (Expected: Top element Y is removed, everything shifts left) ---
+time = 18 | cycle =  9 | Reset = 0 | CMD = 11 | DataIn = Z | Full = 0 | Empty = 0 | Top = Y | Q = YXABC                           
+time = 20 | cycle = 10 | Reset = 0 | CMD = 11 | DataIn = Z | Full = 0 | Empty = 0 | Top = X | Q = XABC                            
+
+--- Testing: FILL TO FULL (Expected: Full flag high after inserting N-3 more) ---
+time = 22 | cycle = 11 | Reset = 0 | CMD = 01 | DataIn = A | Full = 0 | Empty = 0 | Top = X | Q = XABCZ                           
+time = 24 | cycle = 12 | Reset = 0 | CMD = 01 | DataIn = A | Full = 0 | Empty = 0 | Top = X | Q = XABCZA                          
+time = 26 | cycle = 13 | Reset = 0 | CMD = 01 | DataIn = C | Full = 0 | Empty = 0 | Top = X | Q = XABCZAB                         
+time = 28 | cycle = 14 | Reset = 0 | CMD = 01 | DataIn = C | Full = 0 | Empty = 0 | Top = X | Q = XABCZABC                        
+time = 30 | cycle = 15 | Reset = 0 | CMD = 01 | DataIn = E | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCD                       
+time = 32 | cycle = 16 | Reset = 0 | CMD = 01 | DataIn = E | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDE                      
+time = 34 | cycle = 17 | Reset = 0 | CMD = 01 | DataIn = G | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEF                     
+time = 36 | cycle = 18 | Reset = 0 | CMD = 01 | DataIn = G | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFG                    
+time = 38 | cycle = 19 | Reset = 0 | CMD = 01 | DataIn = I | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGH                   
+time = 40 | cycle = 20 | Reset = 0 | CMD = 01 | DataIn = I | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHI                  
+time = 42 | cycle = 21 | Reset = 0 | CMD = 01 | DataIn = K | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJ                 
+time = 44 | cycle = 22 | Reset = 0 | CMD = 01 | DataIn = K | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJK                
+time = 46 | cycle = 23 | Reset = 0 | CMD = 01 | DataIn = M | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKL               
+time = 48 | cycle = 24 | Reset = 0 | CMD = 01 | DataIn = M | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLM              
+time = 50 | cycle = 25 | Reset = 0 | CMD = 01 | DataIn = O | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMN             
+time = 52 | cycle = 26 | Reset = 0 | CMD = 01 | DataIn = O | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNO            
+time = 54 | cycle = 27 | Reset = 0 | CMD = 01 | DataIn = Q | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOP           
+time = 56 | cycle = 28 | Reset = 0 | CMD = 01 | DataIn = Q | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQ          
+time = 58 | cycle = 29 | Reset = 0 | CMD = 01 | DataIn = S | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQR         
+time = 60 | cycle = 30 | Reset = 0 | CMD = 01 | DataIn = S | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRS        
+time = 62 | cycle = 31 | Reset = 0 | CMD = 01 | DataIn = U | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRST       
+time = 64 | cycle = 32 | Reset = 0 | CMD = 01 | DataIn = U | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTU      
+time = 66 | cycle = 33 | Reset = 0 | CMD = 01 | DataIn = W | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUV     
+time = 68 | cycle = 34 | Reset = 0 | CMD = 01 | DataIn = W | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVW    
+time = 70 | cycle = 35 | Reset = 0 | CMD = 01 | DataIn = Y | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVWX   
+time = 72 | cycle = 36 | Reset = 0 | CMD = 01 | DataIn = Y | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVWXY  
+time = 74 | cycle = 37 | Reset = 0 | CMD = 01 | DataIn = A | Full = 0 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVWXYZ 
+time = 76 | cycle = 38 | Reset = 0 | CMD = 01 | DataIn = A | Full = 1 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVWXYZA
+--- Expect Full=1 Next Cycle ---
+time = 78 | cycle = 39 | Reset = 0 | CMD = 01 | DataIn = C | Full = 1 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVWXYZA
+time = 80 | cycle = 40 | Reset = 0 | CMD = 01 | DataIn = C | Full = 1 | Empty = 0 | Top = X | Q = XABCZABCDEFGHIJKLMNOPQRSTUVWXYZA
+
+--- Testing: POP UNTIL EMPTY (Expected: Empty flag high after N pops) ---
+time = 82 | cycle = 41 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = A | Q = ABCZABCDEFGHIJKLMNOPQRSTUVWXYZA 
+time = 84 | cycle = 42 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = B | Q = BCZABCDEFGHIJKLMNOPQRSTUVWXYZA  
+time = 86 | cycle = 43 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = C | Q = CZABCDEFGHIJKLMNOPQRSTUVWXYZA   
+time = 88 | cycle = 44 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = Z | Q = ZABCDEFGHIJKLMNOPQRSTUVWXYZA    
+time = 90 | cycle = 45 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = A | Q = ABCDEFGHIJKLMNOPQRSTUVWXYZA     
+time = 92 | cycle = 46 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = B | Q = BCDEFGHIJKLMNOPQRSTUVWXYZA      
+time = 94 | cycle = 47 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = C | Q = CDEFGHIJKLMNOPQRSTUVWXYZA       
+time = 96 | cycle = 48 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = D | Q = DEFGHIJKLMNOPQRSTUVWXYZA        
+time = 98 | cycle = 49 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = E | Q = EFGHIJKLMNOPQRSTUVWXYZA         
+time = 100 | cycle = 50 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = F | Q = FGHIJKLMNOPQRSTUVWXYZA          
+time = 102 | cycle = 51 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = G | Q = GHIJKLMNOPQRSTUVWXYZA           
+time = 104 | cycle = 52 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = H | Q = HIJKLMNOPQRSTUVWXYZA            
+time = 106 | cycle = 53 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = I | Q = IJKLMNOPQRSTUVWXYZA             
+time = 108 | cycle = 54 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = J | Q = JKLMNOPQRSTUVWXYZA              
+time = 110 | cycle = 55 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = K | Q = KLMNOPQRSTUVWXYZA               
+time = 112 | cycle = 56 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = L | Q = LMNOPQRSTUVWXYZA                
+time = 114 | cycle = 57 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = M | Q = MNOPQRSTUVWXYZA                 
+time = 116 | cycle = 58 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = N | Q = NOPQRSTUVWXYZA                  
+time = 118 | cycle = 59 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = O | Q = OPQRSTUVWXYZA                   
+time = 120 | cycle = 60 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = P | Q = PQRSTUVWXYZA                    
+time = 122 | cycle = 61 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = Q | Q = QRSTUVWXYZA                     
+time = 124 | cycle = 62 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = R | Q = RSTUVWXYZA                      
+time = 126 | cycle = 63 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = S | Q = STUVWXYZA                       
+time = 128 | cycle = 64 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = T | Q = TUVWXYZA                        
+time = 130 | cycle = 65 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = U | Q = UVWXYZA                         
+time = 132 | cycle = 66 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = V | Q = VWXYZA                          
+time = 134 | cycle = 67 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = W | Q = WXYZA                           
+time = 136 | cycle = 68 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = X | Q = XYZA                            
+time = 138 | cycle = 69 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = Y | Q = YZA                             
+time = 140 | cycle = 70 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = Z | Q = ZA                              
+time = 142 | cycle = 71 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 0 | Top = A | Q = A                               
+time = 144 | cycle = 72 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 1 | Top =   | Q =                                 
+
+--- Testing: POP ON EMPTY (Expected: Ignored, Empty stays 1) ---
+time = 146 | cycle = 73 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 1 | Top =   | Q =                                 
+time = 148 | cycle = 74 | Reset = 0 | CMD = 11 | DataIn = ! | Full = 0 | Empty = 1 | Top =   | Q =                                 
+
+--- Simulation Complete ---

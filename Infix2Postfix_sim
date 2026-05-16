@@ -1,0 +1,9 @@
+cycle | infix | simulated_postfix | expected_postfix | status
+cycle=13 | infix=3+2.                             | simulated=32+                              | expected=32+                              | PASS
+cycle=27 | infix=3 +2.                            | simulated=32+                              | expected=32+                              | PASS
+cycle=53 | infix=9+8*(7-2).                       | simulated=9872-*+                          | expected=9872-*+                          | PASS
+cycle=65 | infix=a+b.                             | simulated=ab+                              | expected=ab+                              | PASS
+cycle=72 | infix=a.                               | simulated=a                                | expected=a                                | PASS
+cycle=95 | infix=!2+3*!5.                         | simulated=2!35!*+                          | expected=2!35!*+                          | PASS
+cycle=149 | infix=(a*b+c*(d*(e-f+g)+h)).           | simulated=ab*cdef-g+*h+*+                  | expected=ab*cdef-g+*h+*+                  | PASS
+cycle=154 | infix=.                                | simulated=                                 | expected=                                 | PASS
